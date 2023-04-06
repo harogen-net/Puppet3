@@ -128,6 +128,7 @@
     </Compile>
     <Compile Include="CustomPictures.cs" />
     <Compile Include="CustomSounds.cs" />
+    <Compile Include="HotKey.cs" />
     <Compile Include="KeyboardShortcuts.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -11,63 +11,50 @@ namespace Puppet3
 {
     public partial class MascotForm : Form
     {
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        private List<HotKey> hotKeys;
+        Keys[] keys = { Keys.D1, Keys.D2, Keys.D3, Keys.D4, Keys.D5, Keys.D6, Keys.D7, Keys.D8, Keys.D9, Keys.D0, Keys.OemMinus };
+
+        private void MascotForm_Load(object sender, EventArgs e)
         {
-            if (keyData == (Keys.Alt | Keys.D1))
+            this.hotKeys = new List<HotKey>();
+
+            for(var i = 0; i < keys.Length; i++)
             {
-                Alt_Number(new int[] { 0, 1, 2, 3 }, 0, 0);
-                return true;
+                var hotKey = new HotKey(MOD_KEY.ALT, keys[i]);
+                hotKey.HotKeyPush += this.HotKeyPush;
+
+                this.hotKeys.Add(hotKey);
             }
-            if (keyData == (Keys.Alt | Keys.D2))
+        }
+
+        private void HotKeyPush(object sender, EventArgs args)
+        {
+            var hotKey = (sender as HotKey);
+            if (hotKey == null) return;
+
+            var index = Array.IndexOf(keys, hotKey.key);
+            //Console.WriteLine(hotKey.key);
+            //Console.WriteLine(index);
+            if (index > -1)
             {
-                Alt_Number(new int[] { 4, 5, 6, 7 }, 1, 1);
-                return true;
+                if (hotKey.key == Keys.OemMinus)
+                {
+                    DrawDefaultMascot();
+                }
+                else
+                {
+                    Alt_Number(new int[] { index * 4, index * 4 + 1, index * 4 + 2, index * 4 + 3 }, index, index);
+                }
             }
-            if (keyData == (Keys.Alt | Keys.D3))
+
+        }
+
+        private void MascotForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.hotKeys.ForEach((hotKey) =>
             {
-                Alt_Number(new int[] { 8, 9, 10, 11 }, 2, 2);
-                return true;
-            }
-            if (keyData == (Keys.Alt | Keys.D4))
-            {
-                Alt_Number(new int[] { 12, 13, 14, 15 }, 3, 3);
-                return true;
-            }
-            if (keyData == (Keys.Alt | Keys.D5))
-            {
-                Alt_Number(new int[] { 16, 17, 18, 19 }, 4, 4);
-                return true;
-            }
-            if (keyData == (Keys.Alt | Keys.D6))
-            {
-                Alt_Number(new int[] { 20, 21, 22, 23 }, 5, 5);
-                return true;
-            }
-            if (keyData == (Keys.Alt | Keys.D7))
-            {
-                Alt_Number(new int[] { 24, 25, 26, 27 }, 6, 6);
-                return true;
-            }
-            if (keyData == (Keys.Alt | Keys.D8))
-            {
-                Alt_Number(new int[] { 28, 29, 30, 31 }, 7, 7);
-                return true;
-            }
-            if (keyData == (Keys.Alt | Keys.D9))
-            {
-                Alt_Number(new int[] { 32, 33, 34, 35 }, 8, 8);
-                return true;
-            }
-            if (keyData == (Keys.Alt | Keys.D0))
-            {
-                Alt_Number(new int[] { 36, 37, 38, 39 }, 9, 9);
-                return true;
-            }
-            if (keyData == (Keys.Alt | Keys.OemMinus))
-            {
-                DrawDefaultMascot();
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
+                hotKey.Dispose();
+            });
         }
 
         private void DrawDefaultMascot()
