@@ -40,39 +40,40 @@
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.propertiesToolStripMenuItem,
             this.customizeToolStripMenuItem,
             this.aboutPuppet3ToolStripMenuItem,
             this.closeToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(159, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(206, 116);
             // 
             // propertiesToolStripMenuItem
             // 
             this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
-            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(205, 28);
             this.propertiesToolStripMenuItem.Text = "設定";
             this.propertiesToolStripMenuItem.Click += new System.EventHandler(this.propertiesToolStripMenuItem_Click);
             // 
             // customizeToolStripMenuItem
             // 
             this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(205, 28);
             this.customizeToolStripMenuItem.Text = "カスタマイズ";
             this.customizeToolStripMenuItem.Click += new System.EventHandler(this.customizeToolStripMenuItem_Click);
             // 
             // aboutPuppet3ToolStripMenuItem
             // 
             this.aboutPuppet3ToolStripMenuItem.Name = "aboutPuppet3ToolStripMenuItem";
-            this.aboutPuppet3ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.aboutPuppet3ToolStripMenuItem.Size = new System.Drawing.Size(205, 28);
             this.aboutPuppet3ToolStripMenuItem.Text = "Puppet3 について";
             this.aboutPuppet3ToolStripMenuItem.Click += new System.EventHandler(this.aboutPuppet3ToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(205, 28);
             this.closeToolStripMenuItem.Text = "閉じる";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -100,6 +101,8 @@
             this.Text = global::Puppet3.Properties.Settings.Default.Title;
             this.TopMost = global::Puppet3.Properties.Settings.Default.TopMost;
             this.TransparencyKey = System.Drawing.SystemColors.Control;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MascotForm_FormClosing);
+            this.Load += new System.EventHandler(this.MascotForm_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
