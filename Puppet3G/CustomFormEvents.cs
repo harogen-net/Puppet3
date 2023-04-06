@@ -13,16 +13,24 @@ namespace Puppet3
         {
             FormClosed += new FormClosedEventHandler(Form_Closed);
 
-            foreach(Button button in pictureButtons)
-            {
-                button.DragEnter += new DragEventHandler(Button_DragEnter);
-            }
+            //foreach(Button button in pictureButtons)
+            //{
+            //    button.DragEnter += new DragEventHandler(Button_DragEnter);
+            //}
             foreach (Button button in soundButtons)
             {
                 button.DragEnter += new DragEventHandler(Button_DragEnter);
             }
 
-            button1.DragDrop += new DragEventHandler(Button1_DragDrop);
+            button1.AllowDrop = false;
+            groupBox1.AllowDrop = true;
+            groupBox1.DragDrop += new DragEventHandler(Button1_DragDrop);
+            groupBox1.DragEnter += new DragEventHandler(Button_DragEnter);
+            groupBox1.DragLeave += new EventHandler(Button_DragLeave);
+
+
+
+            //button1.DragDrop += new DragEventHandler(Button1_DragDrop);
             button2.DragDrop += new DragEventHandler(Button2_DragDrop);
             button3.DragDrop += new DragEventHandler(Button3_DragDrop);
             button4.DragDrop += new DragEventHandler(Button4_DragDrop);

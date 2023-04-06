@@ -38,6 +38,13 @@ namespace Puppet3
 
         private void Button_DragEnter(object sender, DragEventArgs e)
         {
+            var control = sender as GroupBox;
+            if (control != null)
+            {
+                control.BackColor = Color.Turquoise;
+            }
+
+            
             if (e.Data.GetDataPresent(DataFormats.Bitmap) ||
                 e.Data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -46,6 +53,14 @@ namespace Puppet3
             else
             {
                 e.Effect = DragDropEffects.None;
+            }
+        }
+        private void Button_DragLeave(object sender, EventArgs e)
+        {
+            var control = sender as GroupBox;
+            if (control != null)
+            {
+                control.BackColor = Color.Transparent;
             }
         }
 
@@ -62,6 +77,7 @@ namespace Puppet3
             //pictureBox.TabStop = false;
             pictureBox.Image = bitmap;
             pictureBox.Visible = true;
+
         }
 
         private void InitializeButtonText(Button button)
